@@ -39,7 +39,7 @@ async def home():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riddle Engine</title>
+    <title>The Riddle Workshop</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -200,12 +200,19 @@ async def home():
         }
         
         .tagline {
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.5);
-            font-weight: 400;
+            font-size: 0.85rem;
+            color: var(--gold);
+            font-weight: 600;
             margin-top: 0.5rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .hero-text {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 1rem;
+            line-height: 1.6;
+            font-weight: 400;
         }
         
         /* Upload zone */
@@ -269,6 +276,13 @@ async def home():
         .upload-text span {
             color: var(--gold);
             font-weight: 600;
+        }
+        
+        .upload-hint {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            margin-top: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
         }
         
         input[type="file"] { display: none; }
@@ -406,28 +420,30 @@ async def home():
             <div class="logo">
                 <div class="logo-icon">✦</div>
             </div>
-            <h1>Riddle Engine</h1>
-            <p class="tagline">AI-Powered Gift Mysteries</p>
+            <h1>The Riddle Workshop</h1>
+            <p class="tagline">Bulk Gift Cards, Personalized in Seconds</p>
+            <p class="hero-text">Got 50 gifts to wrap? Upload your CSV and download riddle cards for everyone—no spoilers, just hints.</p>
         </div>
         
         <form id="uploadForm" enctype="multipart/form-data">
             <div class="upload-zone" id="dropZone">
                 <div class="upload-icon">↑</div>
-                <p class="upload-text">Drop CSV or <span>browse</span></p>
+                <p class="upload-text">Your gift list goes here</p>
+                <p class="upload-hint">CSV with Name, Gift Idea, Budget</p>
                 <div class="file-name" id="fileName"></div>
                 <input type="file" id="fileInput" name="file" accept=".csv" required>
             </div>
             
             <div class="btn-wrap">
                 <button type="submit" class="btn" id="submitBtn" disabled>
-                    Generate Riddles
+                    Generate All Riddles
                 </button>
             </div>
         </form>
         
         <div id="status"></div>
         
-        <p class="hint">Format: <code>Name, Gift Idea, Budget</code></p>
+        <p class="hint">Perfect for teachers, event planners, or anyone with a big list</p>
     </div>
     
     <script>
@@ -513,7 +529,7 @@ async def home():
                     window.URL.revokeObjectURL(url);
                     
                     status.className = 'success';
-                    status.innerHTML = '✓ Complete — check downloads';
+                    status.innerHTML = '✓ Riddles ready — check your downloads';
                 } else {
                     throw new Error('Generation failed');
                 }
